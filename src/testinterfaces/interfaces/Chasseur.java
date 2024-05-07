@@ -1,4 +1,4 @@
-package interfaces.entites;
+package testinterfaces.interfaces;
 
 public interface Chasseur {
 

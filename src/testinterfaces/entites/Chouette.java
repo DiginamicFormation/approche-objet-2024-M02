@@ -1,4 +1,6 @@
-package interfaces.entites;
+package testinterfaces.entites;
+
+import testinterfaces.interfaces.Chasseur;
 
 public class Chouette extends Oiseau implements Chasseur {
 

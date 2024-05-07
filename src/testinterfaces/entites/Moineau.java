@@ -1,4 +1,4 @@
-package interfaces.entites;
+package testinterfaces.entites;
 
 public class Moineau extends Oiseau {
 

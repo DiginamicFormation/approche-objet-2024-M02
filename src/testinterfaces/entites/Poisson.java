@@ -1,6 +1,8 @@
-package interfaces.entites;
+package testinterfaces.entites;
 
-public class Poisson extends Animal {
+import testinterfaces.interfaces.Aquatique;
+
+public abstract class Poisson extends Animal implements Aquatique {
 
 	public Poisson(int poids, String nom) {
 		super(poids, nom);
