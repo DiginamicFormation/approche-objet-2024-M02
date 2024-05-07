@@ -3,8 +3,15 @@ package testinterfaces.entites;
 import testinterfaces.interfaces.Aquatique;
 import testinterfaces.interfaces.Chasseur;
 
+/**
+ * 
+ */
 public class Dauphin extends Mammifere implements Chasseur, Aquatique {
 
+	/** 
+	 * @param poids
+	 * @param nom
+	 */
 	public Dauphin(int poids, String nom) {
 		super(poids, nom);
 	}
@@ -22,7 +29,5 @@ public class Dauphin extends Mammifere implements Chasseur, Aquatique {
 	@Override
 	public void respirer() {
 		System.out.println("Je dois reprendre ma respiration régulièrement à la surface grâce à un event situé sur le dessus de mon crane.");
-		
 	}
-
 }
