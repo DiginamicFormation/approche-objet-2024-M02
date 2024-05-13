@@ -28,10 +28,13 @@ public class GenererFichier {
 			}
 		}
 		
-		// Transformation des villes de plus de 25k en String
+		// Génération des lignes pour le fichier de sortie des villes de plus de 25000 habs
 		ArrayList<String> selection = new ArrayList<>();
+		
+		// On commence par ajouter les entêtes de colonnes qui nous intéressent
 		selection.add(colonnes[1]+";"+colonnes[2]+";"+colonnes[6]+";"+colonnes[9]);
 		
+		// Puis on ajoute à la liste des lignes, chaque ville de plus de 25k transformée en chaines de caractères
 		for (Ville ville: villes25k) {
 			String ligneSortie = ville.toCsv();
 			selection.add(ligneSortie);
