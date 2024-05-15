@@ -1,6 +1,6 @@
 package fichiers;
 
-import fichiers.csv.Csv;
+import utils.Csv;
 import utils.StringUtils;
 
 public class Ville implements Comparable<Ville> {

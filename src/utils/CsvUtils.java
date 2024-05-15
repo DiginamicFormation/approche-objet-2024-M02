@@ -4,8 +4,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import fichiers.csv.Csv;
-
 /**
  * Fournit des méthodes utilitaires pour le traitement et la génération de fichiers CSV
  */
