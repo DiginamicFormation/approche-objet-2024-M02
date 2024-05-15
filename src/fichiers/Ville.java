@@ -1,11 +1,20 @@
 package fichiers;
 
+import fichiers.csv.Csv;
+
 public class Ville implements Comparable<Ville> {
 
+	@Csv(enteteColonne = "Nom de la région")
 	private String nomRegion;
+	
 	private String codeDept;
+	
+	@Csv(enteteColonne = "Nom de la commune")
 	private String nom;
+	
+	@Csv(enteteColonne = "Pop")
 	private int pop;
+	
 	public Ville(String nomRegion, String codeDept, String nom, int pop) {
 		super();
 		this.nomRegion = nomRegion;
@@ -15,6 +24,12 @@ public class Ville implements Comparable<Ville> {
 	}
 
 	@Override
+	public int compareTo(Ville o) {
+		
+		return this.nom.compareTo(o.getNom());
+	}
+	
+	@Override
 	public String toString() {
 		return "Ville [nomRegion=" + nomRegion + ", codeDept=" + codeDept + ", nom=" + nom + ", pop=" + pop + "]";
 	}
@@ -23,11 +38,6 @@ public class Ville implements Comparable<Ville> {
 		return nomRegion+";"+codeDept+";"+nom+";"+pop;
 	}
 
-	public int compareTo(Ville autre) {
-		
-		return nom.compareTo(autre.getNom());
-	}
-	
 	public String getNom() {
 		return nom;
 	}
@@ -40,5 +50,6 @@ public class Ville implements Comparable<Ville> {
 	public void setPop(int pop) {
 		this.pop = pop;
 	}
+
 
 }

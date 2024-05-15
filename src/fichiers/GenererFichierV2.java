@@ -10,14 +10,30 @@ import java.util.List;
 
 import fichiers.csv.CsvUtils;
 
-public class GenererFichier {
+/**
+ * V2 qui utilise une annotation @Csv positionnée sur les attributs de la classe
+ * Ville pour générer le fichier CSV.
+ * <p>
+ * Seuls les valeurs des attributs possédant cette annotation sont exportées
+ * dans le fichier CSV.
+ * <p>
+ * De plus le tri utilise une classe VilleComparateur offrant 4 possibilités de
+ * tri.
+ */
+public class GenererFichierV2 {
 
+	/**
+	 * Méthode main
+	 * 
+	 * @param args non utilisés ici
+	 * @throws IOException si le fichier recensement n'existe pas ou si le fichier
+	 *                     de destination n'est pas accessible
+	 */
 	public static void main(String[] args) throws IOException {
 
 		Path pathOri = Paths.get("C:/Temp/Work/recensement.csv");
 		List<String> lignes = Files.readAllLines(pathOri);
-		String ligneColonne = lignes.remove(0);
-		String[] colonnes = ligneColonne.split(";");
+		lignes.remove(0);
 
 		List<Ville> villes25k = new ArrayList<>();
 		for (String ligne : lignes) {
@@ -32,20 +48,11 @@ public class GenererFichier {
 		}
 
 		// TRI ICI !!!!!!!
-		Collections.sort(villes25k);
-		
+		Collections.sort(villes25k, new VilleComparateur(VilleComparateur.TRI_POP_ASC));
+
 		// Génération des lignes pour le fichier de sortie des villes de plus de 25000
 		// habs
-		ArrayList<String> selection = new ArrayList<>();
-
-		// On commence par ajouter les entêtes de colonnes qui nous intéressent
-		selection.add(colonnes[1] + ";" + colonnes[2] + ";" + colonnes[6] + ";" + colonnes[9]);
-
-		// Puis on ajoute à la liste des lignes, chaque ville de plus de 25k transfo
-		for (Ville ville : villes25k) {
-			String ligneSortie = ville.toCsv();
-			selection.add(ligneSortie);
-		}
+		List<String> selection = CsvUtils.toCsv(villes25k);
 
 		// Génération du fichier de sortie
 		Path pathDest = Paths.get("C:/Temp/Work/recensement25k.csv");
