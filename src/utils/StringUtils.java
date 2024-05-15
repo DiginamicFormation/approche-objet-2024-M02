@@ -4,7 +4,7 @@ package utils;
  * Classe utilitaire pour la manipulation/génération de chaines de car.
  * Voir la classe Ville qui utilise cette classe pour la génération de sa méthode toString()
  */
-public class StringUtils {
+public final class StringUtils {
 
 	/** Méthode qui concatène des informations de différentes natures (String, double, etc.) pour générer une String
 	 * @param objets informations à concaténer

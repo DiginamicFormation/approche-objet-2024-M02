@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Fournit des méthodes utilitaires pour le traitement et la génération de fichiers CSV
  */
-public class CsvUtils {
+public final class CsvUtils {
 
 	/** Transforme une liste d'objets en une liste de String.<br>
 	 * Chaque String correspond à la sérialisation d'un objet au format CSV.
@@ -29,7 +29,7 @@ public class CsvUtils {
 				for (Field f : fields) {
 					if (f.isAnnotationPresent(Csv.class)) {
 						Csv csv = f.getAnnotation(Csv.class);
-						enteteColonne+=csv.enteteColonne()+";";
+						enteteColonne+=csv.colonne()+";";
 					}
 				}
 				liste.add(enteteColonne);
@@ -52,4 +52,5 @@ public class CsvUtils {
 		}
 		return liste;
 	}
+
 }

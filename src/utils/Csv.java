@@ -9,6 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Csv {
 
-	String enteteColonne();
-	int ordre() default 0;
+	String colonne();
 }

@@ -5,15 +5,16 @@ import utils.StringUtils;
 
 public class Ville implements Comparable<Ville> {
 
-	@Csv(enteteColonne = "Nom de la région")
+	@Csv(colonne = "Nom de la région")
 	private String nomRegion;
 	
+	@Csv(colonne = "Code département")
 	private String codeDept;
 	
-	@Csv(enteteColonne = "Nom de la commune")
+	@Csv(colonne = "Nom de la commune")
 	private String nom;
 	
-	@Csv(enteteColonne = "Pop")
+	@Csv(colonne = "Pop")
 	private int pop;
 	
 	public Ville(String nomRegion, String codeDept, String nom, int pop) {

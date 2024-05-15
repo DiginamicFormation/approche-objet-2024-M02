@@ -14,7 +14,7 @@ import utils.CsvUtils;
  * V2 qui utilise une annotation @Csv positionnée sur les attributs de la classe
  * Ville pour générer le fichier CSV.
  * <p>
- * Seuls les valeurs des attributs possédant cette annotation sont exportées
+ * Seules les valeurs des attributs possédant cette annotation sont exportées
  * dans le fichier CSV.
  * <p>
  * De plus le tri utilise une classe VilleComparateur offrant 4 possibilités de
