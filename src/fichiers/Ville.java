@@ -1,6 +1,7 @@
 package fichiers;
 
 import fichiers.csv.Csv;
+import utils.StringUtils;
 
 public class Ville implements Comparable<Ville> {
 
@@ -25,15 +26,19 @@ public class Ville implements Comparable<Ville> {
 
 	@Override
 	public int compareTo(Ville o) {
-		
 		return this.nom.compareTo(o.getNom());
 	}
 	
 	@Override
 	public String toString() {
-		return "Ville [nomRegion=" + nomRegion + ", codeDept=" + codeDept + ", nom=" + nom + ", pop=" + pop + "]";
+		return StringUtils.toString("nomRegion=", nomRegion, " - codeDept=", codeDept, " - nom=", nom, " - pop=", pop);
 	}
 
+	/** Désormais, merci d'utiliser la classe CsvUtils pour générer cette ligne.
+	 * Cette méthode sera supprimée dans la version 1.2 de l'application
+	 * @return String
+	 */
+	@Deprecated
 	public String toCsv() {
 		return nomRegion+";"+codeDept+";"+nom+";"+pop;
 	}

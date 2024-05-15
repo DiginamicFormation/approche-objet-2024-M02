@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fichiers.csv.CsvUtils;
+import utils.CsvUtils;
 
 public class GenererFichier {
 

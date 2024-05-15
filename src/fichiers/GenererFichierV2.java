@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fichiers.csv.CsvUtils;
+import utils.CsvUtils;
 
 /**
  * V2 qui utilise une annotation @Csv positionnée sur les attributs de la classe
@@ -31,7 +31,7 @@ public class GenererFichierV2 {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		// Les paramètres
+		// Les paramètres : à externaliser dans un fichier de CONF
 		String repertoireTravail = "C:/Temp/Work/";
 		String nomFichierOrigine = "recensement.csv";
 		String nomFichierDestination = "recensementOut.csv";

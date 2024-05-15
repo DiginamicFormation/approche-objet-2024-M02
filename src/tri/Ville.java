@@ -1,5 +1,7 @@
 package tri;
 
+import utils.StringUtils;
+
 public class Ville implements Comparable<Ville> {
 
 	private String nom;
@@ -11,14 +13,14 @@ public class Ville implements Comparable<Ville> {
 		this.nbHabs = nbHabs;
 	}
 	
+	@Override
 	public int compareTo(Ville autre) {
-
 		return -this.nom.compareTo(autre.getNom());
 	}
 	
 	@Override
 	public String toString() {
-		return "Ville [nom=" + nom + ", nbHabs=" + nbHabs + "]";
+		return StringUtils.toString("nom=", nom, " - nbHabs=", nbHabs);
 	}
 	
 	public String getNom() {
