@@ -31,31 +31,41 @@ public class GenererFichierV2 {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		Path pathOri = Paths.get("C:/Temp/Work/recensement.csv");
+		// Les paramètres
+		String repertoireTravail = "C:/Temp/Work/";
+		String nomFichierOrigine = "recensement.csv";
+		String nomFichierDestination = "recensementOut.csv";
+		final int populationMin = 25000;
+
+		// Lecture du fichier CSV
+		Path pathOri = Paths.get(repertoireTravail + nomFichierOrigine);
 		List<String> lignes = Files.readAllLines(pathOri);
+
+		// Suppression de la 1ère ligne contenant les entêtes de colonnes
 		lignes.remove(0);
 
-		List<Ville> villes25k = new ArrayList<>();
+		// Constitution de notre sélection de villes ayant une population >
+		// populationMin
+		List<Ville> villesPopMin = new ArrayList<>();
 		for (String ligne : lignes) {
 
 			String[] elements = ligne.split(";");
 			int nbHabs = Integer.parseInt(elements[9].replaceAll(" ", ""));
 			Ville ville = new Ville(elements[1], elements[2], elements[6], nbHabs);
-			if (ville.getPop() >= 25000) {
+			if (ville.getPop() >= populationMin) {
 
-				villes25k.add(ville);
+				villesPopMin.add(ville);
 			}
 		}
 
 		// TRI ICI !!!!!!!
-		Collections.sort(villes25k, new VilleComparateur(VilleComparateur.TRI_POP_ASC));
+		Collections.sort(villesPopMin, new VilleComparateur(VilleComparateur.TRI_POP_ASC));
 
-		// Génération des lignes pour le fichier de sortie des villes de plus de 25000
-		// habs
-		List<String> selection = CsvUtils.toCsv(villes25k);
+		// Génération des lignes pour le fichier de sortie 
+		List<String> selection = CsvUtils.toCsv(villesPopMin);
 
 		// Génération du fichier de sortie
-		Path pathDest = Paths.get("C:/Temp/Work/recensement25k.csv");
+		Path pathDest = Paths.get(repertoireTravail + nomFichierDestination);
 		Files.write(pathDest, selection);
 
 		System.out.println("Nombre de lignes sélectionnées = " + selection.size());
