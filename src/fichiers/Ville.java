@@ -1,5 +1,7 @@
 package fichiers;
 
+import java.text.Collator;
+import java.util.Locale;
 import java.util.Objects;
 
 import utils.Csv;
@@ -46,7 +48,9 @@ public class Ville implements Comparable<Ville> {
 
 	@Override
 	public int compareTo(Ville o) {
-		return this.nom.compareTo(o.getNom());
+		
+		Collator collatorFr = Collator.getInstance(Locale.FRANCE);
+		return collatorFr.compare(this.nom, o.getNom());
 	}
 	
 	@Override
