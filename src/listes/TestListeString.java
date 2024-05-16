@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+/**
+ * TP sur les listes exercice 4
+ */
 public class TestListeString {
 
 	public static void main(String[] args) {
