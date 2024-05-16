@@ -43,7 +43,7 @@ public class GenererFichier {
 
 		// Puis on ajoute à la liste des lignes, chaque ville de plus de 25k transfo
 		for (Ville ville : villes25k) {
-			String ligneSortie = ville.toCsv();
+			String ligneSortie = CsvUtils.toCsv(ville, ";", false);
 			selection.add(ligneSortie);
 		}
 

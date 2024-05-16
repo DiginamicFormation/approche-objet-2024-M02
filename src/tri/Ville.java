@@ -1,5 +1,7 @@
 package tri;
 
+import java.util.Objects;
+
 import utils.StringUtils;
 
 public class Ville implements Comparable<Ville> {
@@ -11,6 +13,17 @@ public class Ville implements Comparable<Ville> {
 		super();
 		this.nom = nom;
 		this.nbHabs = nbHabs;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		
+		// Si object est une instance de Ville, je teste l'égalité des attributs
+		if (object instanceof Ville) {
+			Ville autre = (Ville)object;
+			return Objects.equals(this.nom, autre.getNom()) && Objects.equals(this.nbHabs, autre.getNbHabs());
+		}
+		return false;		
 	}
 	
 	@Override

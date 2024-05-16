@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import utils.CsvUtils;
+import utils.StringUtils;
 
 /**
  * V2 qui utilise une annotation @Csv positionnée sur les attributs de la classe
@@ -35,7 +36,8 @@ public class GenererFichierV2 {
 		String repertoireTravail = "C:/Temp/Work/";
 		String nomFichierOrigine = "recensement.csv";
 		String nomFichierDestination = "recensementOut.csv";
-		final int populationMin = 25000;
+		String separateur = ";";
+		final int populationMin = 30000;
 
 		// Lecture du fichier CSV
 		Path pathOri = Paths.get(repertoireTravail + nomFichierOrigine);
@@ -49,8 +51,8 @@ public class GenererFichierV2 {
 		List<Ville> villesPopMin = new ArrayList<>();
 		for (String ligne : lignes) {
 
-			String[] elements = ligne.split(";");
-			int nbHabs = Integer.parseInt(elements[9].replaceAll(" ", ""));
+			String[] elements = ligne.split(separateur);
+			int nbHabs = StringUtils.parseInt(elements[9]);
 			Ville ville = new Ville(elements[1], elements[2], elements[6], nbHabs);
 			if (ville.getPop() >= populationMin) {
 
@@ -62,7 +64,7 @@ public class GenererFichierV2 {
 		Collections.sort(villesPopMin, new VilleComparateur(VilleComparateur.TRI_POP_ASC));
 
 		// Génération des lignes pour le fichier de sortie 
-		List<String> selection = CsvUtils.toCsv(villesPopMin);
+		List<String> selection = CsvUtils.toCsv(villesPopMin, separateur, true);
 
 		// Génération du fichier de sortie
 		Path pathDest = Paths.get(repertoireTravail + nomFichierDestination);

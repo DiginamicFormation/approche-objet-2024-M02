@@ -6,7 +6,7 @@ package utils;
  */
 public final class StringUtils {
 
-	/** Méthode qui concatène des informations de différentes natures (String, double, etc.) pour générer une String
+	/** Cette méthode concatène en chaine de caractères une liste d'informations 
 	 * @param objets informations à concaténer
 	 * @return String
 	 */
@@ -21,5 +21,17 @@ public final class StringUtils {
 		}
 		return builder.toString();
 	}
-
+	
+	/** Cette méthode convertit une chaine de caractères qui contient un nombre en int
+	 * Si la chaine de caractères contient des espaces, ces derniers sont supprimés.
+	 * @param chaine chaine à convertir en int
+	 * @return int
+	 */
+	public static int parseInt(String chaine) {
+		if (chaine.contains(" ")) {
+			chaine = chaine.replaceAll(" ", "");
+		}
+		return Integer.parseInt(chaine);
+		
+	}
 }
