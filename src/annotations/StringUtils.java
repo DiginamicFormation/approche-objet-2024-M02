@@ -2,7 +2,7 @@ package annotations;
 
 import java.lang.reflect.Field;
 
-public class StringUtils {
+public final class StringUtils {
 
 	public static String toString(Object o) {
 		StringBuilder builder = new StringBuilder();
