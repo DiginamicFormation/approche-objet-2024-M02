@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,12 +21,14 @@ public class GenererFichier {
 		String[] colonnes = ligneColonne.split(";");
 
 		List<Ville> villes25k = new ArrayList<>();
-		for (String ligne : lignes) {
 
+		ArrayList<String> erreurs = new ArrayList<>();
+		
+		for (String ligne : lignes) {
 			String[] elements = ligne.split(";");
 			int nbHabs = Integer.parseInt(elements[9].replaceAll(" ", ""));
 			Ville ville = new Ville(elements[1], elements[2], elements[6], nbHabs);
-			if (ville.getPop() >= 25000) {
+			if (ville.getPopulation() >= 25000) {
 
 				villes25k.add(ville);
 			}
@@ -33,7 +36,7 @@ public class GenererFichier {
 
 		// TRI ICI !!!!!!!
 		Collections.sort(villes25k);
-		
+
 		// Génération des lignes pour le fichier de sortie des villes de plus de 25000
 		// habs
 		ArrayList<String> selection = new ArrayList<>();
@@ -52,6 +55,10 @@ public class GenererFichier {
 		Files.write(pathDest, selection);
 
 		System.out.println("Nombre de lignes sélectionnées = " + selection.size());
+		System.out.println("Nombre de lignes en erreur (cf errors.log) = "+ erreurs.size());
+		
+		Path pathErrorsLog = Paths.get("C:/Temp/Work/errors.log");
+		Files.write(pathErrorsLog, erreurs);
 	}
 
 }

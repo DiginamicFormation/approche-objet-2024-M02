@@ -24,9 +24,9 @@ public class VilleComparateur implements Comparator<Ville> {
 		return switch (typeTri) {
 			case TRI_NOM_ASC -> o1.getNom().compareTo(o2.getNom());
 			case TRI_NOM_DESC -> -o1.getNom().compareTo(o2.getNom());
-			case TRI_POP_ASC -> o1.getPop()-o2.getPop();
-			case TRI_POP_DESC -> o2.getPop()-o1.getPop();
-			default -> o1.getPop()-o2.getPop();
+			case TRI_POP_ASC -> o1.getPopulation()-o2.getPopulation();
+			case TRI_POP_DESC -> o2.getPopulation()-o1.getPopulation();
+			default -> o1.getPopulation()-o2.getPopulation();
 		};
 	}
 

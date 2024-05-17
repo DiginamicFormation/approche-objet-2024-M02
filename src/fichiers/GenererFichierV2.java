@@ -5,12 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
+import static java.util.Collections.sort;
 import java.util.List;
 
-import utils.CsvUtils;
+import static utils.CsvUtils.toCsv;
 import utils.StringUtils;
-
 /**
  * V2 qui utilise une annotation @Csv positionnée sur les attributs de la classe
  * Ville pour générer le fichier CSV.
@@ -54,17 +53,17 @@ public class GenererFichierV2 {
 			String[] elements = ligne.split(separateur);
 			int nbHabs = StringUtils.parseInt(elements[9]);
 			Ville ville = new Ville(elements[1], elements[2], elements[6], nbHabs);
-			if (ville.getPop() >= populationMin) {
+			if (ville.getPopulation() >= populationMin) {
 
 				villesPopMin.add(ville);
 			}
 		}
 
 		// TRI ICI !!!!!!!
-		Collections.sort(villesPopMin, new VilleComparateur(VilleComparateur.TRI_POP_ASC));
+		sort(villesPopMin, new VilleComparateur(VilleComparateur.TRI_POP_ASC));
 
 		// Génération des lignes pour le fichier de sortie 
-		List<String> selection = CsvUtils.toCsv(villesPopMin, separateur, true);
+		List<String> selection = toCsv(villesPopMin, separateur, true);
 
 		// Génération du fichier de sortie
 		Path pathDest = Paths.get(repertoireTravail + nomFichierDestination);

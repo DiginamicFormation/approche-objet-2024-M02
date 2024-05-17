@@ -4,28 +4,31 @@ import java.text.Collator;
 import java.util.Locale;
 import java.util.Objects;
 
-import utils.Csv;
+import annotations.Column;
+import annotations.Table;
 import utils.StringUtils;
 
 /**
  * Cette classe représente le concept de Ville
  */
+@Table(name="VILLES")
 public class Ville implements Comparable<Ville> {
 
 	/** Nom de la région */
+	@Column(name = "NOM_REGION", length=3)
 	private String nomRegion;
 	
 	/** Code département */
-	@Csv(colonne = "Code département")
+	@Column(name = "NOM_REGION")
 	private String codeDept;
 	
 	/** Nom de la commune */
-	@Csv(colonne = "Nom de la commune")
+	@Column(name = "NOM")
 	private String nom;
 
 	/** Population */
-	@Csv(colonne = "Pop")
-	private int pop;
+	@Column(name = "POP")
+	private int population;
 	
 	/** 
 	 * Nombre de régions
@@ -36,14 +39,22 @@ public class Ville implements Comparable<Ville> {
 	 * @param nomRegion nom de la région
 	 * @param codeDept code du département
 	 * @param nom nom de la commune
-	 * @param pop population
+	 * @param population population
 	 */
-	public Ville(String nomRegion, String codeDept, String nom, int pop) {
+	public Ville(String nomRegion, String codeDept, String nom, int population) {
 		super();
 		this.nomRegion = nomRegion;
 		this.codeDept = codeDept;
 		this.nom = nom;
-		this.pop = pop;
+		this.population = population;
+	}
+	
+	/** Désormais, merci d'utiliser la classe CsvUtils pour générer cette ligne.
+	 * Cette méthode sera supprimée dans la version 1.2 de l'application
+	 * @return String
+	 */
+	public String toCsv() {
+		return nomRegion+";"+codeDept+";"+nom+";"+population;
 	}
 
 	@Override
@@ -55,7 +66,7 @@ public class Ville implements Comparable<Ville> {
 	
 	@Override
 	public String toString() {
-		return StringUtils.toString("nomRegion=", nomRegion, " - codeDept=", codeDept, " - nom=", nom, " - pop=", pop);
+		return StringUtils.toString("nomRegion=", nomRegion, " - codeDept=", codeDept, " - nom=", nom, " - population=", population);
 	}
 	
 	@Override
@@ -68,16 +79,7 @@ public class Ville implements Comparable<Ville> {
 		
 		// Cast permet de transformer object en Ville
 		Ville autre = (Ville)object;		
-		return Objects.equals(this.nom, autre.getNom()) && Objects.equals(this.pop, autre.getPop());
-	}
-
-	/** Désormais, merci d'utiliser la classe CsvUtils pour générer cette ligne.
-	 * Cette méthode sera supprimée dans la version 1.2 de l'application
-	 * @return String
-	 */
-	@Deprecated
-	public String toCsv() {
-		return nomRegion+";"+codeDept+";"+nom+";"+pop;
+		return Objects.equals(this.nom, autre.getNom()) && Objects.equals(this.population, autre.getPopulation());
 	}
 
 	/** Getter pour nomRegion
@@ -122,17 +124,17 @@ public class Ville implements Comparable<Ville> {
 		this.nom = nom;
 	}
 
-	/** Getter pour pop
-	 * @return the pop
+	/** Getter pour population
+	 * @return the population
 	 */
-	public int getPop() {
-		return pop;
+	public int getPopulation() {
+		return population;
 	}
 
-	/** Setter pour pop
-	 * @param pop the pop to set
+	/** Setter pour population
+	 * @param population the population to set
 	 */
-	public void setPop(int pop) {
-		this.pop = pop;
+	public void setPopulation(int population) {
+		this.population = population;
 	}
 }

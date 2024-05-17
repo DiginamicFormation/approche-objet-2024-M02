@@ -9,15 +9,20 @@ public final class StringUtils {
 	/** Cette méthode concatène en chaine de caractères une liste d'informations 
 	 * @param objets informations à concaténer
 	 * @return String
+	 * @throws ConcatenationException dans le cas où le paramètre objets a une taille nulle
 	 */
-	public static String toString(Object... objets) {
+	public static String toString(String separateur, Object... objets) throws ConcatenationException {
+		
+		if (objets.length == 0) {
+			throw new ConcatenationException("Vous devez concaténer au moins 1 information.");
+		}
 
 		// Ici objets est un tableau
 		// Il peut donc se parcourir avec boucle indexée ou non indexée (comme
 		// ci-dessous) mais pas avec un Iterator.
 		StringBuilder builder = new StringBuilder();
 		for (Object obj : objets) {
-			builder.append(obj);
+			builder.append(obj).append(separateur);
 		}
 		return builder.toString();
 	}
